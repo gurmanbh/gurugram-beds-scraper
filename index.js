@@ -7,6 +7,7 @@ const run = async() => {
 	const variable = 'ModifiedDate'
 	let maxDate
 	let p = time.timeParse("%Y-%m-%dT%H:%M:%S.%L")
+	let f = time.timeFormat("%Y-%m-%d %H:%M")
 	data.forEach((d, i) => {
 		delete d.CreatedBy
 		delete d.ModifiedBy
@@ -27,7 +28,7 @@ const run = async() => {
 	data = data.sort(compare)
 	console.log(data)
 
-	io.writeDataSync('data/files/' + maxDate + '.csv', data)
+	io.writeDataSync('data/files/' + f(maxDate) + '.csv', data)
 	function compare( a, b) {
 
 		if ( a[variable] < b[variable] ){
